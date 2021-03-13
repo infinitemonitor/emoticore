@@ -1,0 +1,17 @@
+{
+	"logReactions": false,
+	"allowEval": true,
+	"sql": {
+		"host": "localhost",
+		"user": "root",
+		"password": null,
+		"database": null
+	},
+	"prefix": "++",
+	"timeout": 1000,
+	"recentExpiresAfter": 1500,
+	"owner": "0",
+	"ownerTag": "user#0000",
+	"helpLink": "<https://infinitemonitor.github.io/emoticore/>",
+	"token": null
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style>
+		body {
+			background-color: #1f1f2b;
+			font-family: "Arial";
+			margin-left: 0px;
+			margin-right: 0px;
+			margin-bottom: 0px;
+		}
+		.title {
+			text-align: center;
+			color: #a196ff;
+		}
+		.category {
+			font-family: system-ui;
+			font-weight: lighter;
+			font-size: 26px;
+			text-align: center;
+			color: #a196ff;
+		}
+		hr {
+			color: #a196ff;
+		}
+		.command {
+			font-size: 20px;
+			color: #a196ff;
+			margin: 2px;
+			text-shadow: 1px 1px 2px #000000;
+			margin-left: 10px;
+		}
+		.cmd-arg {
+			color: #a196ff;
+			background-color: rgb(208, 245, 210, 0.1);
+			border-radius: 4px;
+			border: 2px solid rgba(223, 247, 224, 0.1);
+			font-family: monospace;
+		}
+		.cmd-desc {
+			color: #d1d1d1;
+			margin-left: 10px;
+		}
+		.aliases {
+			color: #e2e2e2;
+			font-family: monospace;
+			background-color: rgb(255, 255, 255, 0.05);
+			border-radius: 2px;
+			border: 2px solid rgba(255, 255, 255, 0.05);
+			margin-left: 10px;
+		}
+		.category-bg {
+			background-color: #28283b;
+			margin: 0px;
+			box-shadow: 0px 0px 2px #000000;
+		}
+		.footer {
+			background-color: #28283b;
+			margin: 0px;
+			box-shadow: 0px 0px 2px #000000;
+			height: 70px;
+			text-align: center;
+		}
+		.footer-link {
+			color: white;
+			font-size: 20px;
+			font-family: system-ui;
+			font-weight: lighter;
+			text-decoration-style: dotted;
+			line-height: 63px;
+			text-shadow: 0px 0px 3px #ffffff;
+		}
+	</style>
+</head>
+<body>
+	<h2 class="title">Emoticore Command List</h2>
+	
+	<div class="category-bg">
+	<h4 class="category">Statistics</h4>
+	</div>
+	
+	<h5 class="command">++uses <span class="cmd-arg">[emote]</span></h5>
+	<p class="cmd-desc">Get an emote's usage count. You may mention an emote or use its name.</p>
+	
+	<h5 class="command">++stats <span class="cmd-arg">(user)</h5>
+	<p class="cmd-desc">Get a user's stats. Defaults to yourself, ping someone or type their name to specify a user.</p>
+	
+	<h5 class="command">++leaderboard <span class="cmd-arg">(most-used|most-reacts-sent|most-reacts-received)</span> <span class="cmd-arg">(page)</h5>
+	<code class="aliases">Aliases: lb</code>
+	<p class="cmd-desc">Shows leaderboards for one of the categories, or a list of categories if none is specified.</p>
+	
+	<div class="category-bg">
+	<h4 class="category">Utility</h4>
+	</div>
+	
+	<h5 class="command">++added <span class="cmd-arg">[emote]</h5>
+	<p class="cmd-desc">Shows when an emote was added. You may mention an emote or use its name.<p>
+	
+	<h5 class="command">++search <span class="cmd-arg">[name]</h5>
+	<p class="cmd-desc">Searches for emotes that match the search query. Type -g after the query to limit results to this server.<p>
+	
+	<h5 class="command">++em <span class="cmd-arg">[emote]</h5>
+	<p class="cmd-desc">Get the link to an emote. You may mention an emote or use its name.<p>
+	
+	<h5 class="command">++slots</h5>
+	<p class="cmd-desc">See how many emotes are in your server and view the amount of available slots<p>
+	
+	<h5 class="command">++unused <span class="cmd-arg">(cutoff)</h5>
+	<p class="cmd-desc">Find all emotes below a certain amount of uses in your server. If <span class="cmd-arg">cutoff</span> is not provided, Emoticore will try to automatically calculate one.<p>
+	
+	<div class="category-bg">
+	<h4 class="category">Management</h4>
+	</div>
+	
+	<h5 class="command">++add <span class="cmd-arg">[name]</span> <span class="cmd-arg">(source)</h5>
+	<p class="cmd-desc">Add an emote. Provide a link to an image or upload one. Requires permission to manage emojis.<p>
+	
+	<h5 class="command">++rename <span class="cmd-arg">[emote]</span> <span class="cmd-arg">[new-name]</h5>
+	<p class="cmd-desc">Rename an emote.<p>
+	
+	<h5 class="command">++remove <span class="cmd-arg">[emote]</h5>
+	<p class="cmd-desc">Remove an emote.<p>
+	
+	<div class="category-bg">
+	<h4 class="category">Info</h4>
+	</div>
+	
+	<h5 class="command">++help</h5>
+	<p class="cmd-desc">Get a list of commands.<p>
+	
+	<h5 class="command">++info</h5>
+	<p class="cmd-desc">Get info about the bot.<p>
+	
+	<div class="category-bg">
+	<h4 class="category">Logging</h4>
+	</div>
+	
+	<h5 class="command">++log-channel <span class="cmd-arg">[channel]</h5>
+	<p class="cmd-desc">Set the logging channel, or disable logging if no channel is provided. To specify a channel, mention it. Requires permission to manage messages.<p>
+	
+	<div class="category-bg">
+	<h4 class="category">Misc.</h4>
+	</div>
+	
+	<h5 class="command">++random</h5>
+	<p class="cmd-desc">Shows usage stats for a random emote.<p>
+	
+	<h5 class="command">++user</h5>
+	<p class="cmd-desc">Shows stats for a random user.<p>
+	
+	<div class="footer">
+		<a class="footer-link" href="https://infinitemonitor.github.io/">InfiniteMonitor</a>
+	</div>
+</body>
