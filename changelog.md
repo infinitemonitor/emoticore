@@ -1,3 +1,11 @@
+# 1.7
+- Cleaned up the command list page
+- (Re-)added ratelimiting, and this time it works better.
+- Added Modules and converted some features to modules.
+- Added package-lock.json
+- Added the disabledCommands propery to config, wich allows you to disable commands.
+- Added the command handler and converted all the commands to the new system.
+
 # 1.6
 - findEmote() now uses regex (thanks to nununoisy) and is generally improved
 - ++add now supports adding from custom emotes

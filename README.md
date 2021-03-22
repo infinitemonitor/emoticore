@@ -14,7 +14,7 @@ Emoticore is a bot that helps with tracking emote usage. It also tracks how many
 - Run the bot
 
 # Known issues
-- Ratelimits are global which might lead to confusion if the bot is used on multiple servers. To avoid this, set `timeout` to 0 in the config
+- None currently.
 
 # Config values
 - logReactions - whether or not to log reactions to the console. does not affect ghost reaction logging
@@ -26,6 +26,12 @@ Emoticore is a bot that helps with tracking emote usage. It also tracks how many
 - ownerTag - the bot owner's tag
 - helpLink - the link given to the user when running the help command
 - token - the bot's token
+- disabledCommands - an array of command names which should be disabled. these will not be loaded upon startup
+
+# Modifying
+If you want to add features to Emoticore, the easiest way is to use Modules. Simply create a script in the /modules directory (refer to sample-module.js as a template), fill in the details, and you're good to go.
+
+If you're looking to add a command, the process is similar. Use one of the commands in the /commands directory as an example and don't forget to set `module.exports.name` to your command's name!
 
 # Thanks
 Thanks to wurzt#0001 for coming up with the name
