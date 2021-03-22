@@ -20,13 +20,18 @@ bot.commands = new discord.Collection()
 fs.readdir("./commands/", (err, files) => {
 	if(err) throw err;
 	console.log(`Loading ${files.length} commands...`)
+	ignored = 0
 	
 	if(files.length == 0) return console.log("No commands found")
 	files.forEach((f, i) => {
 		cmd = require(`./commands/${f}`)
-		bot.commands.set(cmd.name, cmd)
+		if(!bot.cfg.disabledCommands.includes(cmd.name)) {
+			bot.commands.set(cmd.name, cmd)
+		} else {
+			ignored++
+		}
 	})
-	console.log("Commands loaded")
+	console.log(`Commands loaded (${ignored} ignored)`)
 })
 
 con.connect(err => {if(err) throw err; console.log("Connected to database")})
