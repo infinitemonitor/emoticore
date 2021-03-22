@@ -26,6 +26,7 @@ Emoticore is a bot that helps with tracking emote usage. It also tracks how many
 - ownerTag - the bot owner's tag
 - helpLink - the link given to the user when running the help command
 - token - the bot's token
+- disabledCommands - an array of command names which should be disabled. these will not be loaded upon startup
 
 # Thanks
 Thanks to wurzt#0001 for coming up with the name
