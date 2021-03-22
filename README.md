@@ -14,7 +14,7 @@ Emoticore is a bot that helps with tracking emote usage. It also tracks how many
 - Run the bot
 
 # Known issues
-- Ratelimits are global which might lead to confusion if the bot is used on multiple servers. To avoid this, set `timeout` to 0 in the config
+- None currently.
 
 # Config values
 - logReactions - whether or not to log reactions to the console. does not affect ghost reaction logging
