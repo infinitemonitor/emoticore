@@ -28,5 +28,10 @@ Emoticore is a bot that helps with tracking emote usage. It also tracks how many
 - token - the bot's token
 - disabledCommands - an array of command names which should be disabled. these will not be loaded upon startup
 
+# Modifying
+If you want to add features to Emoticore, the easiest way is to use Modules. Simply create a script in the /modules directory (refer to sample-module.js as a template), fill in the details, and you're good to go.
+
+If you're looking to add a command, the process is similar. Use one of the commands in the /commands directory as an example and don't forget to set `module.exports.name` to your command's name!
+
 # Thanks
 Thanks to wurzt#0001 for coming up with the name

@@ -16,6 +16,7 @@ lastcommand = Date.now()
 recent = []
 scoreCache = []
 
+//LOAD COMMANDS
 bot.commands = new discord.Collection()
 fs.readdir("./commands/", (err, files) => {
 	if(err) throw err;
@@ -32,6 +33,20 @@ fs.readdir("./commands/", (err, files) => {
 		}
 	})
 	console.log(`Commands loaded (${ignored} ignored)`)
+})
+
+//LOAD MODULES
+bot.modules = new discord.Collection()
+fs.readdir("./modules/", (err, files) => {
+	if(err) throw err;
+	console.log(`Loading ${files.length} modules...`)
+	
+	if(files.length == 0) return console.log("No modules found")
+	files.forEach((f, i) => {
+		m = require(`./modules/${f}`)
+		if(m.details.enabled) {m.init(bot, con); bot.modules.set(m.details.title, m)}
+	})
+	console.log(`${bot.modules.size} modules loaded: ${bot.modules.map(x => x.details.title)}`)
 })
 
 con.connect(err => {if(err) throw err; console.log("Connected to database")})
