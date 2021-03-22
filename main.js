@@ -114,6 +114,7 @@ bot.on("message", async (message) => {
 	let msgArray = message.content.split(" ")
 	
 	if(msgArray[0].startsWith(bot.cfg.prefix)) {
+		if(bot.modules.get("Ratelimiter").ProcessRatelimit(message.author.id)) return message.react("⏱️")
 		let cmd = bot.commands.get(msgArray[0].slice(bot.cfg.prefix.length))
 		if(cmd) cmd.run(bot, message, msgArray, con, discord)
 	}
