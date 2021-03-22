@@ -13,5 +13,6 @@
 	"owner": "0",
 	"ownerTag": "user#0000",
 	"helpLink": "<https://infinitemonitor.github.io/emoticore/>",
-	"token": null
+	"token": null,
+	"disabledCommands": []
 }
