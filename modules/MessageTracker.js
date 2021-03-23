@@ -1,4 +1,6 @@
 module.exports.init = async (bot, con) => {
+	DBM = bot.modules.get("DBManager")
+	
 	bot.on("message", async (message) => {
 		if(message.author.id == bot.user.id) return
 		let msgArray = message.content.split(" ")
@@ -7,17 +9,14 @@ module.exports.init = async (bot, con) => {
 		if(msgArray[i].startsWith("<:")||msgArray[i].startsWith("<a:") && msgArray[i].endsWith(">")) {
 				if(!msgArray[i].endsWith(">")) return
 				if(msgArray[i].includes("'")||msgArray[i].includes(";")) return
-				id = msgArray[i].slice(-19,-1)
+				let id = msgArray[i].slice(-19,-1)
 				
-				con.query(`SELECT * FROM emotes WHERE id = '${id}'`, (err,rows) => {
-					if(err) throw err
-					if(rows.length < 1) {
-						con.query(`INSERT IGNORE INTO emotes (id, uses, messages, reacts) VALUES ('${id}', 1, 1, 0)`)
-					} else {
-						con.query(`UPDATE emotes SET uses = ${rows[0].uses+1} WHERE id = '${id}'`)
-						con.query(`UPDATE emotes SET messages = ${rows[0].messages+1} WHERE id = '${id}'`)
-					}
-				})
+				if(DBM.GetEmote(id)){
+					DBM.BumpEmote(id, "messages", con)
+					DBM.BumpEmote(id, "uses", con)
+				} else {
+					DBM.AddEmote({id: id, uses: 1, messages: 1, reacts: 0}, con)
+				}
 				break
 			}
 		}

@@ -27,15 +27,15 @@ module.exports.init = (bot, con, discord) => {
 }
 
 module.exports.GetEmote = (id) => {
-	return Emotes.filter(r => r.id == id)[0]
+	return Emotes.filter(r => r.id == id)[0]||null
 }
 
 module.exports.GetUser = (id) => {
-	return Users.filter(r => r.id == id)[0]
+	return Users.filter(r => r.id == id)[0]||null
 }
 
 module.exports.BumpEmote = (id, property, con) => {
-	index = Emotes.findIndex(x => x.id = id)
+	let index = Emotes.findIndex(x => x.id = id)
 	
 	switch(property) {
 		case "uses":
@@ -56,7 +56,7 @@ module.exports.BumpEmote = (id, property, con) => {
 }
 
 module.exports.BumpUser = (id, property, con) => {
-	index = Users.findIndex(x => x.id = id)
+	let index = Users.findIndex(x => x.id = id)
 	
 	switch(property) {
 		case "rsent":
