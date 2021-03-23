@@ -27,10 +27,12 @@ module.exports.init = (bot, con, discord) => {
 }
 
 module.exports.GetEmote = (id) => {
+	if(id == "*") return Emotes
 	return Emotes.filter(r => r.id == id)[0]||null
 }
 
 module.exports.GetUser = (id) => {
+	if(id == "*") return Users
 	return Users.filter(r => r.id == id)[0]||null
 }
 
