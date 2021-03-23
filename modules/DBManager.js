@@ -37,7 +37,7 @@ module.exports.GetUser = (id) => {
 }
 
 module.exports.BumpEmote = (id, property, con) => {
-	let index = Emotes.findIndex(x => x.id = id)
+	let index = Emotes.findIndex(x => x.id == id)
 	
 	switch(property) {
 		case "uses":
@@ -58,7 +58,7 @@ module.exports.BumpEmote = (id, property, con) => {
 }
 
 module.exports.BumpUser = (id, property, con) => {
-	let index = Users.findIndex(x => x.id = id)
+	let index = Users.findIndex(x => x.id == id)
 	
 	switch(property) {
 		case "rsent":
