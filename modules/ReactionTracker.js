@@ -1,4 +1,6 @@
 module.exports.init = async (bot, con, discord) => {
+	DBM = bot.modules.get("DBManager")
+	
 	bot.on("messageReactionAdd", async (react) => {
 		if(bot.cfg.logReactions) console.log(`${react.users.cache.last().tag} reacted with ${react.emoji.name} to ${react.message.author.tag}`)
 		
@@ -17,37 +19,26 @@ module.exports.init = async (bot, con, discord) => {
 		
 		if(!react.emoji.id) return
 		
-		con.query(`SELECT * FROM emotes WHERE id = '${react.emoji.id}'`, (err,rows) => {
-			if(err) throw err
-			if(rows.length < 1) {
-				con.query(`INSERT IGNORE INTO emotes (id, uses, messages, reacts) VALUES ('${react.emoji.id}', 1, 0, 1)`)
-			} else {
-				con.query(`UPDATE emotes SET uses = ${rows[0].uses+1} WHERE id = '${react.emoji.id}' LIMIT 1`)
-				con.query(`UPDATE emotes SET reacts = ${rows[0].reacts+1} WHERE id = '${react.emoji.id}' LIMIT 1`)
-			}
-		})
+		if(DBM.GetEmote(react.emoji.id)) {
+			DBM.BumpEmote(react.emoji.id, "uses", con)
+			DBM.BumpEmote(react.emoji.id, "reacts", con)
+		} else {
+			DBM.AddEmote({id: react.emoji.id, uses: 1, messages: 0, reacts: 1}, con)
+		}
 		
-		con.query(`SELECT * FROM users WHERE id = '${react.message.author.id}'`, (err,rows) => {
-			if(err) throw err
-			if(rows.length < 1) {
-				con.query(`INSERT IGNORE INTO users (id, rrecv, rsent) VALUES ('${react.message.author.id}', 1, 0)`)
-			} else {
-				con.query(`UPDATE users SET rrecv = ${rows[0].rrecv+1} WHERE id = '${react.message.author.id}'`)
-				bot.updateScoreCache(react.message.author.id, bot.calculateScore(rows[0].rsent, rows[0].rrecv))
-			}
-		})
+		if(DBM.GetUser(react.message.author.id)) {
+			DBM.BumpUser(react.message.author.id, "rrecv", con)
+			bot.updateScoreCache(react.message.author.id, bot.calculateScore(DBM.GetUser(react.message.author.id).rsent, DBM.GetUser(react.message.author.id).rrecv))
+		} else {
+			DBM.AddUser({id: react.message.author.id, rrecv: 1, rsent: 0}, con)
+		}
 		
-		con.query(`SELECT * FROM users WHERE id = '${react.users.cache.last().id}'`, (err,rows) => {
-			if(err) throw err
-			if(rows.length < 1) {
-				if(!react.users.cache.last()) return
-				con.query(`INSERT IGNORE INTO users (id, rrecv, rsent) VALUES ('${react.users.cache.last().id}', 0, 1)`)
-			} else {
-				if(!react.users.cache.last()) return
-				con.query(`UPDATE users SET rsent = ${rows[0].rsent+1} WHERE id = '${react.users.cache.last().id}'`)
-				bot.updateScoreCache(react.users.cache.last().id, bot.calculateScore(rows[0].rsent, rows[0].rrecv))
-			}
-		})
+		if(DBM.GetUser(react.users.cache.last().id)) {
+			DBM.BumpUser(react.users.cache.last().id, "rsent", con)
+			bot.updateScoreCache(react.users.cache.last().id, bot.calculateScore(DBM.GetUser(react.users.cache.last().id).rsent, DBM.GetUser(react.users.cache.last().id).rrecv))
+		} else {
+			DBM.AddUser({id: react.users.cache.last().id, rrecv: 0, rsent: 1}, con)
+		}
 	
 	})
 
