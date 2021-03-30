@@ -1,3 +1,8 @@
+# 1.8
+- Added the database manager
+- Added database caching
+- Updated modules and commands to utilize it
+
 # 1.7
 - Cleaned up the command list page
 - (Re-)added ratelimiting, and this time it works better.
